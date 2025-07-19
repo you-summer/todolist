@@ -27,3 +27,8 @@
   cursor: pointer;
   background-color: white;
 }
+
+.TodoItem.Done .content {
+  color: gray;
+  text-decoration: line-through;
+}

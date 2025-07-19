@@ -1,14 +1,21 @@
-import { useState } from "react";
+import { useState, useContext, useRef } from "react";
 import "./Editor.css";
+import { TodosDispatchContext } from "../App";
 
-const Editor = ({ onCreate }) => {
+const Editor = () => {
+  const { onCreate } = useContext(TodosDispatchContext);
   const [content, setContent] = useState("");
+  const contentRef = useRef();
 
   const onChangeContent = (e) => {
     setContent(e.target.value);
   };
 
   const onClickSubmit = () => {
+    if (content === "") {
+      contentRef.current.focus();
+      return;
+    }
     onCreate(content);
     setContent("");
   };
@@ -27,6 +34,7 @@ const Editor = ({ onCreate }) => {
         value={content}
         onChange={onChangeContent}
         onKeyDown={onKeyDown}
+        ref={contentRef}
       />
       <button onClick={onClickSubmit}>추가</button>
     </div>
