@@ -1,35 +1,77 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import List from "./components/List.jsx";
+import Header from "./components/Header.jsx";
+import Editor from "./components/Editor.jsx";
+import { useState, useReducer, useRef } from "react";
+
+const mokData = [
+  {
+    id: 0,
+    isDone: false,
+    content: "운동하기",
+    date: new Date().getTime(),
+  },
+  {
+    id: 1,
+    isDone: false,
+    content: "공부하기",
+    date: new Date().getTime(),
+  },
+  {
+    id: 2,
+    isDone: false,
+    content: "다이소가서 편지지 사오기",
+    date: new Date().getTime(),
+  },
+];
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [todo, setTodo] = useState(mokData);
+  const idRef = useRef(3);
+  console.log(todo);
+
+  const onCreate = (content) => {
+    setTodo([
+      {
+        id: idRef.current++,
+        isDone: false,
+        content: content,
+        date: new Date().getTime(),
+      },
+      ...todo,
+    ]);
+  };
+
+  const onDelete = (targetId) => {
+    setTodo(
+      todo.filter((item) => {
+        return item.id !== targetId;
+      })
+    );
+  };
+
+  const onUpdate = (targetId) => {
+    console.log(targetId);
+    setTodo(
+      todo.map((item) => {
+        return item.id === targetId
+          ? { ...item, isDone: !item.isDone }
+          : item;
+      })
+    );
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="App">
+      <Header />
+      <Editor onCreate={onCreate} />
+      <List
+        todo={todo}
+        onDelete={onDelete}
+        onUpdate={onUpdate}
+      />
+    </div>
+  );
 }
 
-export default App
+export default App;

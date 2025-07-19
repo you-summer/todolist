@@ -1,0 +1,25 @@
+.Editor {
+  display: flex;
+  gap: 10px;
+}
+
+.Editor > input {
+  flex: 1;
+  padding: 15px;
+  border: 1px solid rgb(220, 220, 220);
+  border-radius: 5px;
+}
+
+.Editor > input:focus {
+  border-color: rgb(255 217 81);
+  outline: none;
+}
+
+.Editor > button {
+  border: none;
+  border-radius: 5px;
+  width: 80px;
+  background-color: rgb(255 217 81);
+  color: white;
+  cursor: pointer;
+}
