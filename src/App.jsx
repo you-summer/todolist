@@ -7,6 +7,7 @@ import {
   useReducer,
   useRef,
   createContext,
+  useEffect,
 } from "react";
 
 const mokData = [
@@ -31,30 +32,63 @@ const mokData = [
 ];
 
 const reducer = (state, action) => {
+  let nextState;
+
   switch (action.type) {
     case "CREATE":
-      return [action.data, ...state];
+      nextState = [action.data, ...state];
+      break;
     case "DELETE":
-      return state.filter((item) => {
+      nextState = state.filter((item) => {
         return item.id !== action.targetId;
       });
+      break;
     case "UPDATE":
-      return state.map((item) => {
+      nextState = state.map((item) => {
         return item.id === action.targetId
           ? { ...item, isDone: !item.isDone }
           : item;
       });
+      break;
+    case "INIT":
+      return action.data;
     default:
       return state;
   }
+  localStorage.setItem("todo", JSON.stringify(nextState));
+  return nextState;
 };
 
 export const TodosStateContext = createContext();
 export const TodosDispatchContext = createContext();
 
 function App() {
-  const [todo, dispatch] = useReducer(reducer, mokData);
+  const [todo, dispatch] = useReducer(reducer, []);
   const idRef = useRef(3);
+  const [isDark, setIsDark] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const storedData = localStorage.getItem("todo");
+    if (!storedData) {
+      setIsLoading(false);
+      return;
+    }
+
+    const parsedData = JSON.parse(storedData);
+
+    if (!Array.isArray(parsedData)) {
+      setIsLoading(false);
+      return;
+    }
+
+    dispatch({
+      type: "INIT",
+      data: parsedData,
+    });
+
+    setIsLoading(false);
+  }, []);
 
   const onCreate = (content) => {
     dispatch({
@@ -83,13 +117,42 @@ function App() {
     });
   };
 
+  const onDark = () => {
+    setIsDark(!isDark);
+    if (isDark) {
+      console.log("isdarktrue");
+    } else {
+      console.log("isdark false");
+    }
+  };
+
+  useEffect(() => {
+    if (isDark) {
+      document.querySelector("body").classList.add("dark");
+    } else {
+      document
+        .querySelector("body")
+        .classList.remove("dark");
+    }
+  }, [isDark]);
+
+  if (isLoading) {
+    return <div>로딩중입니다...</div>;
+  }
+
   return (
-    <div className="App">
-      <Header />
+    <div className={`App${isDark ? " dark" : ""}`}>
       <TodosStateContext.Provider value={todo}>
         <TodosDispatchContext.Provider
-          value={{ onCreate, onDelete, onUpdate }}
+          value={{
+            onCreate,
+            onDelete,
+            onUpdate,
+            onDark,
+            isDark,
+          }}
         >
+          <Header />
           <Editor />
           <List />
         </TodosDispatchContext.Provider>

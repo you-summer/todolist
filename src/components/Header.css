@@ -1,3 +1,59 @@
 .Header > h2 {
   color: rgb(33, 33, 33);
 }
+
+.Header .TodoLengthText > h1 {
+  font-size: 60px;
+  margin: 20px 0px 0px 0px;
+}
+
+.TodoLengthText {
+  padding: 20px;
+  text-align: center;
+}
+
+.TodoLengthText .title {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.TodoLengthText .summary {
+  font-size: 15px;
+}
+
+.TodoLengthText .waiting {
+  color: #f59e0b; /* 따뜻한 노란색 */
+  font-size: 15px;
+}
+
+.TodoLengthText .inspire {
+  font-style: italic;
+  color: #6b7280; /* 회색톤 */
+  font-size: 15px;
+}
+
+.DateHeader {
+  display: flex;
+  align-items: center;
+}
+
+.DateHeader .DateHeader_2 {
+  width: 50%;
+  justify-content: center;
+}
+.DateHeader .DateHeader_1 {
+  width: 25%;
+  justify-content: flex-start;
+}
+
+.DateHeader_3 {
+  width: 25%;
+  justify-content: flex-end;
+}
+.DateHeader_3 > span {
+  cursor: pointer;
+}
+
+.HeaderContent {
+  padding: 20px;
+}

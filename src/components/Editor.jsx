@@ -3,7 +3,9 @@ import "./Editor.css";
 import { TodosDispatchContext } from "../App";
 
 const Editor = () => {
-  const { onCreate } = useContext(TodosDispatchContext);
+  const { onCreate, isDark } = useContext(
+    TodosDispatchContext
+  );
   const [content, setContent] = useState("");
   const contentRef = useRef();
 
@@ -27,7 +29,7 @@ const Editor = () => {
   };
 
   return (
-    <div className="Editor">
+    <div className={`Editor ${isDark ? " dark" : ""}`}>
       <input
         placeholder="할 일을 입력해주세요"
         type="text"

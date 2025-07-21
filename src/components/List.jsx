@@ -1,11 +1,15 @@
 import { useState, useContext } from "react";
 import "./List.css";
 import TodoItem from "./TodoItem";
-import { TodosStateContext } from "../App";
+import {
+  TodosStateContext,
+  TodosDispatchContext,
+} from "../App";
 
 const List = () => {
   const [search, setSearch] = useState("");
   const todo = useContext(TodosStateContext);
+  const { isDark } = useContext(TodosDispatchContext);
 
   const onChangeSearch = (e) => {
     setSearch(e.target.value);
@@ -26,7 +30,7 @@ const List = () => {
   const filterTodo = getFilteredData();
 
   return (
-    <div className="List">
+    <div className={`List${isDark ? " dark" : ""}`}>
       <input
         value={search}
         type="text"

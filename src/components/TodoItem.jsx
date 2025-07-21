@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { TodosDispatchContext } from "../App";
 
 const TodoItem = ({ id, isDone, content, date }) => {
-  const { onDelete, onUpdate } = useContext(
+  const { onDelete, onUpdate, isDark } = useContext(
     TodosDispatchContext
   );
 
@@ -15,7 +15,11 @@ const TodoItem = ({ id, isDone, content, date }) => {
   };
 
   return (
-    <div className={`TodoItem ${isDone ? "Done" : ""}`}>
+    <div
+      className={`TodoItem ${isDone ? "Done" : ""} ${
+        isDark ? " dark" : ""
+      }`}
+    >
       <input
         type="checkbox"
         checked={isDone}
