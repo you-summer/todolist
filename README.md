@@ -16,6 +16,17 @@
 
 ---
 
+### 🛠️ 사용 기술
+
+- React (create-react-app 기반)
+- JavaScript (ES6+)
+- CSS
+- Context API 
+- localStorage 
+- Vercel
+
+---
+
 ## ✨ 주요 기능
 
 - ✅ 할 일 추가 및 삭제
