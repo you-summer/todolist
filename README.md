@@ -1,6 +1,10 @@
 # 📝 To-Do List
 ---
 
+## 💻 미리보기
+<img width="855" height="849" alt="image" src="https://github.com/user-attachments/assets/f6cee2e2-0543-4b79-8ce2-5d79f3c89730" />
+
+
 ## 📅 개발 기간
 
 **2025.07.19 ~ 2025.07.21**  
