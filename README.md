@@ -5,7 +5,7 @@
 ## 💻 미리보기
 <img width="555" height="549" alt="image" src="https://github.com/user-attachments/assets/f6cee2e2-0543-4b79-8ce2-5d79f3c89730" />
 
-다크모드
+- 다크모드</br>
 <img width="595" height="551" alt="image" src="https://github.com/user-attachments/assets/5b549b33-5870-4ef9-aa51-174d1368eacf" />
 
 ---
