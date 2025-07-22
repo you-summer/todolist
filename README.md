@@ -1,5 +1,7 @@
 # 📝 To-Do List
 - 배포주소 : https://egg-to-do-list.vercel.app/
+> 🟢 [👉 배포된 웹사이트 바로가기](https://egg-to-do-list.vercel.app/)
+
 ---
 
 ## 💻 미리보기
