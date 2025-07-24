@@ -97,4 +97,4 @@ React를 처음 배우고 만든 첫 번째 토이 프로젝트였는데 단순�
 
 ## 🙋‍♀️ 만든 사람
 이름: 조연정</br>
-블로그: https://blog.naver.com/jojoor201/
+블로그: [https://blog.naver.com/jojoor201/223943459591](https://blog.naver.com/jojoor201/223943459591)
